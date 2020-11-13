@@ -82,11 +82,11 @@ if one == "e":
     print("Skriv engelska bokstaven/lätet")
     print("'exit' / 'help' / 'hint'")
     print("====================")
-    randList = []
-    hintList = []
-    hint = False
-    fillHintList()
     while True:
+        randList = []
+        hintList = []
+        hint = False
+        fillHintList()
         facit = findRandomRus()
         while True:
             two = input("svar: ").lower()
