@@ -58,16 +58,20 @@ def randEng():
     return dic[lista[random.randint(0,(len(lista) - 1))]]
 
 def engHint(facit):
-    temp2 = random.randint(0, (antalHint - 1))
-    hintList[temp2] = facit
-    randList.append(temp2)
+    temp = random.randint(0, (antalHint - 1))
+    hintList[temp] = facit
+    randList.append(temp)
     for x in range (antalHint - 1):
         while True:
-            temp2 = random.randint(0, (antalHint - 1))
-            if ((temp2 in randList) == False):
+            temp = random.randint(0, (antalHint - 1))
+            if ((temp in randList) == False):
                 break
-        hintList[temp2] = randEng()
-        randList.append(temp2)
+        while True:
+            temp2 = randEng()
+            if ((temp2 in hintList) == False):
+                break
+        hintList[temp] = temp2
+        randList.append(temp)
     print(hintList)
 
 
@@ -79,7 +83,7 @@ while True:
 
 
 if one == "e":
-    print("Skriv engelska bokstaven/lätet")
+    print("Input english sound/letter")
     print("'exit' / 'help' / 'hint'")
     print("====================")
     while True:
@@ -89,14 +93,14 @@ if one == "e":
         fillHintList()
         facit = findRandomRus()
         while True:
-            two = input("svar: ").lower()
+            two = input("Answer: ").lower()
             if two == "exit":
                 break
             elif two == "help":
                 print(facit + "\n===================")
                 break
             elif two == facit:
-                print("RÄTT\n===================")
+                print("Correct\n===================")
                 break
             elif two == "hint" and hint == False:
                 engHint(facit)
