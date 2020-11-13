@@ -4,6 +4,7 @@ i = 0
 lista = []
 one = ""
 two = ""
+facit = ""
 antalHint = 5
 hintList = []
 randList = []
@@ -43,14 +44,33 @@ dic = {
 for key in dic:
     lista.append(key)
 
-def fillHintList:
+def fillHintList():
     for x in range (antalHint):
-    hintList.append("")
+        hintList.append("")
 
-def findRandomRus:
+def findRandomRus():
     temp = random.randint(0,27)
     facit = dic[lista[temp]]
     print(lista[temp])
+    return facit
+
+def engHint(facit):
+    temp2 = random.randint(0,(antalHint - 1))
+    hintList[temp2] = facit
+    print(facit)
+    print(hintList)
+    randList.append(temp2)
+    for x in range (antalHint):
+        print(x)
+        while True:
+            ##print("Hej2")
+            temp2 = random.randint(0, (antalHint - 1))
+            if ((temp2 in randList) == False):
+                print("false found should break")
+                break
+        hintList[random.randint(0, (antalHint - 1))] = dic[lista[random.randint(0,(len(lista) - 1))]]
+        randList.append(temp2)
+    print(hintList)
 
 
 while True:
@@ -66,9 +86,10 @@ if one == "e":
     print("====================")
     randList = []
     hintList = []
+    hint = False
     fillHintList()
     while True:
-        findRandomRus()
+        facit = findRandomRus()
         while True:
             two = input("svar: ").lower()
             if two == "exit":
@@ -79,20 +100,9 @@ if one == "e":
             elif two == facit:
                 print("RÄTT\n===================")
                 break
-            elif two == "hint":
-                temp2 = random.randint(0,4)
-                hintList[temp2] = facit
-                randList.append(temp2)
-                
-                for x in range (antalHint):
-                    while True:
-                        temp2 = random.randint(0, 4)
-                        if ((temp2 in randList) == False):
-                            break
-                    hintList[random.randint(0, 4)] = dic[lista[random.randint(0,27)]]
-                    randList.append(temp2)
-                print(hintList)
-                
+            elif two == "hint" and hint == False:
+                engHint(facit)
+                hint = True
         if two == "exit":
             break
                 
