@@ -54,21 +54,19 @@ def findRandomRus():
     print(lista[temp])
     return facit
 
+def randEng():
+    return dic[lista[random.randint(0,(len(lista) - 1))]]
+
 def engHint(facit):
-    temp2 = random.randint(0,(antalHint - 1))
+    temp2 = random.randint(0, (antalHint - 1))
     hintList[temp2] = facit
-    print(facit)
-    print(hintList)
     randList.append(temp2)
-    for x in range (antalHint):
-        print(x)
+    for x in range (antalHint - 1):
         while True:
-            ##print("Hej2")
             temp2 = random.randint(0, (antalHint - 1))
             if ((temp2 in randList) == False):
-                print("false found should break")
                 break
-        hintList[random.randint(0, (antalHint - 1))] = dic[lista[random.randint(0,(len(lista) - 1))]]
+        hintList[temp2] = randEng()
         randList.append(temp2)
     print(hintList)
 
