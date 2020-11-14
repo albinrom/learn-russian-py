@@ -8,6 +8,8 @@ facit = ""
 antalHint = 5
 hintList = []
 randList = []
+correct = 0
+tries = 0
 
 
 dic = {
@@ -75,8 +77,8 @@ def engHint(facit):
     print(hintList)
 
 
+print("answer in what language")
 while True:
-    print("answer in what language")
     one = input("rus(r) / eng(e): ").lower()
     if one == "r" or one == "e":
         break
@@ -94,13 +96,18 @@ if one == "e":
         facit = findRandomRus()
         while True:
             two = input("Answer: ").lower()
+            if two != "hint" or two != "exit":
+                tries+=1
             if two == "exit":
                 break
             elif two == "help":
-                print(facit + "\n===================")
+                percentCorrect = (correct / tries)*100
+                print(facit + "\n=================== " + str(round(percentCorrect)) + "%")
                 break
             elif two == facit:
-                print("Correct\n===================")
+                correct+=1
+                percentCorrect = (correct / tries)*100
+                print("Correct\n=================== " + str(round(percentCorrect)) + "%")
                 break
             elif two == "hint" and hint == False:
                 engHint(facit)
